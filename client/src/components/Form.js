@@ -29,10 +29,9 @@ export default function VaccinationForm() {
       </ErrorBox>
       <label htmlFor="Impfung">Impfung</label>
       <select
-        name="vac"
-        id="vac"
+        name="vaccination"
         //onChange={updateVaccination}
-        value={vaccination.Impfung}
+        value={vaccination.text}
       >
         <option value="">---Bitte Impfung auswählen---</option>
         <option value="">COVID 19</option>
@@ -42,6 +41,21 @@ export default function VaccinationForm() {
       </select>
       <label htmlFor="Bezeichnung_Hersteller">Hersteller bzw. Impfstoff</label>
       <input type="text" name="producer" />
+      <label>Datum </label>
+      <input type="date" name="date" />
+      <Checkbox>
+        <label>Erstimpfung</label>
+        <input type="checkbox" />
+        <label>Zweitimpfung</label>
+        <input type="checkbox" />
+        <label>Booster</label>
+        <input type="checkbox" />
+      </Checkbox>
+      <label>Nebenwirkungen</label>
+
+      <Button>
+        <input type="submit" value=" Impfung hinzufügen" />
+      </Button>
     </Form>
   );
 }
@@ -96,8 +110,15 @@ const ErrorBox = styled.div`
 `;
 
 const Button = styled.button`
-  padding: 1.5 rem;
-  border-radius: 0.4 rem;
+  padding: 1.5rem;
+  border-radius: 0.4rem;
   border: none;
   cursor: pointer;
+`;
+
+const Checkbox = styled.div`
+  display: flex;
+  justify-content: space-around;
+  padding: 2rem
+  margin: 2rem
 `;
