@@ -3,6 +3,12 @@ import VaccinationForm from './components/Form';
 import { Switch, Route } from 'react-router-dom';
 import styled from 'styled-components/macro';
 
+import LandingPage from './pages/LandingPage';
+import AddForm from './pages/AddForm';
+import Appointments from './pages/Appointment';
+import Info from './pages/Info';
+import Map from './pages/Map';
+
 function App() {
   /* const [serverMessage, setServerMessage] = useState('');
 

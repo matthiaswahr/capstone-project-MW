@@ -21,6 +21,12 @@ export default function VaccinationForm() {
 
   console.log(date.getFullYear());
 
+  function updateForm(event) {
+    const inputName = event.target.name;
+    let inputValue = event.target.value;
+    setVaccination({ ...vaccination, [inputName]: inputValue });
+  }
+
   return (
     <Form>
       <h2>Impfung hinzufügen</h2>
