@@ -5,7 +5,7 @@ import styled from 'styled-components/macro';
 
 import LandingPage from './pages/LandingPage';
 import AddForm from './pages/AddForm';
-import Appointments from './pages/Appointment';
+import Appointments from './pages/Appointments';
 import Info from './pages/Info';
 import Map from './pages/Map';
 
@@ -24,7 +24,23 @@ function App() {
       <Navigation />
       <Switch>
         <Route exact path="/">
-          <VaccinationForm />
+          <LandingPage />
+        </Route>
+
+        <Route path="/AddForm">
+          <AddForm />
+        </Route>
+
+        <Route path="/Appointments">
+          <Appointments />
+        </Route>
+
+        <Route path="/Info">
+          <Info />
+        </Route>
+
+        <Route path="/Map">
+          <Map />
         </Route>
       </Switch>
     </main>
