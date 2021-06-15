@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import Navigation from '../components/Navigation';
 
 export default function LandingPage() {
   return (
@@ -7,7 +6,6 @@ export default function LandingPage() {
       <Title>
         <h1>Get Start Vaccinated</h1>
       </Title>
-      <Navigation />
     </>
   );
 }

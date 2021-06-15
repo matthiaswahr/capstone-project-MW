@@ -10,6 +10,7 @@ export default function VaccinationForm() {
     producer: '',
     date: '',
     firstVaccination: true,
+    secondVaccination: false,
     booster: false,
     sideEffects: [],
     nextAppointment: '',

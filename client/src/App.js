@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import VaccinationForm from './components/Form';
-import { Switch, Route } from 'react-router-dom';
+
+import { Route, Switch } from 'react-router-dom';
 import styled from 'styled-components/macro';
 
 import LandingPage from './pages/LandingPage';
@@ -8,6 +8,7 @@ import AddForm from './pages/AddForm';
 import Appointments from './pages/Appointments';
 import Info from './pages/Info';
 import Map from './pages/Map';
+import Footer from './components/Footer';
 
 function App() {
   /* const [serverMessage, setServerMessage] = useState('');
@@ -21,7 +22,6 @@ function App() {
 
   return (
     <main className="App">
-      <Navigation />
       <Switch>
         <Route exact path="/">
           <LandingPage />
@@ -42,15 +42,10 @@ function App() {
         <Route path="/Map">
           <Map />
         </Route>
+        <Footer />
       </Switch>
     </main>
   );
 }
-
-const Navigation = styled.nav`
-  display: flex;
-`;
-
-const Home = styled.nav``;
 
 export default App;
