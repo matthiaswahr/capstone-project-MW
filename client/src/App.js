@@ -1,18 +1,44 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { Switch, Route } from 'react-router-dom';
+
+import LandingPage from './pages/LandingPage';
+import AddForm from './pages/AddForm';
+import Appointments from './pages/Appointments';
+import Info from './pages/Info';
+import Map from './pages/Map';
+import Navigation from './components/Navigation';
 
 function App() {
-  const [serverMessage, setServerMessage] = useState('');
+  const [allVaccinations, setAllVaccinations] = useState([]);
 
-  useEffect(() => {
-    fetch('http://localhost:4000/')
-      .then((res) => res.json())
-      .then((response) => setServerMessage(response));
-  });
+  const addVac = (vac) => setAllVaccinations([...allVaccinations, vac]);
 
   return (
-    <div className="App">
-      <h1>{serverMessage}</h1>
-    </div>
+    <main className="App">
+      <Navigation />
+      <Switch>
+        <Route exact path="/">
+          <LandingPage allVaccinations={allVaccinations} />
+        </Route>
+
+        <Route path="/AddForm">
+          <AddForm onAddVac={addVac} />
+        </Route>
+
+        <Route path="/Appointments">
+          <Appointments />
+        </Route>
+
+        <Route path="/Info">
+          <Info />
+        </Route>
+
+        <Route path="/Map">
+          <Map />
+        </Route>
+      </Switch>
+    </main>
   );
 }
+
 export default App;
