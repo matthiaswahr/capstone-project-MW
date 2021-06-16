@@ -4,7 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import styled from 'styled-components/macro';
 
-export default function VaccinationForm() {
+export default function Vaccination() {
   const initialState = {
     vaccination: '',
     producer: '',
@@ -16,12 +16,12 @@ export default function VaccinationForm() {
   };
 
   const [vaccination, setVaccination] = useState(initialState);
-  const [isError, setError] = useState(false);
+
   const date = new Date();
 
   console.log(date.getFullYear());
 
-  function updateForm(event) {
+  function updateVaccination(event) {
     const inputName = event.target.name;
     let inputValue = event.target.value;
     setVaccination({ ...vaccination, [inputName]: inputValue });
@@ -30,9 +30,7 @@ export default function VaccinationForm() {
   return (
     <Form>
       <h2>Impfung hinzufügen</h2>
-      <ErrorBox isError={isError}>
-        <p>Bitte Formulareingabe überprüfen</p>
-      </ErrorBox>
+
       <label htmlFor="Impfung">Impfung</label>
       <select
         name="vaccination"
