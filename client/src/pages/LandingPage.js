@@ -1,13 +1,16 @@
 import styled from 'styled-components';
-import Navigation from '../components/Navigation';
+import VaccinationCard from '../components/Card';
 
-export default function LandingPage() {
+export default function LandingPage({ allVaccinations }) {
   return (
     <>
       <Title>
         <h1>Get Start Vaccinated</h1>
       </Title>
-      <Navigation />
+      {allVaccinations &&
+        allVaccinations.map((vac, index) => (
+          <VaccinationCard key={index} vaccination={vac} />
+        ))}
     </>
   );
 }
