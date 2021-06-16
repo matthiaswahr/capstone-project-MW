@@ -18,8 +18,6 @@ export default function Vaccination({ onAddVac }) {
 
   const date = new Date();
 
-  console.log(date.getFullYear());
-
   function updateVaccination(event) {
     const inputName = event.target.name;
     let inputValue = event.target.value;
@@ -37,7 +35,7 @@ export default function Vaccination({ onAddVac }) {
   }
 
   return (
-    <div>
+    
       <Form onSubmit={handleFormSubmit}>
         <h2>Impfung hinzufügen</h2>
 
@@ -98,7 +96,7 @@ export default function Vaccination({ onAddVac }) {
           <input type="submit" value=" Impfung hinzufügen" />
         </Button>
       </Form>
-    </div>
+  
   );
 }
 
