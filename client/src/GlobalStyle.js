@@ -21,6 +21,8 @@ h1, h2, h3 {
   line-height: 1.2;
 }
 
+
+main,
 body, h1, h2, h3, p {
   margin: 0;
 }

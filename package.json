@@ -20,13 +20,6 @@
   },
   "homepage": "https://github.com/matthiaswahr/capstone-project-MW#readme",
   "devDependencies": {
-    "concurrently": "^6.2.0",
-    "cypress": "^7.5.0"
-  },
-  "dependencies": {
-    "prop-types": "^15.7.2",
-    "react-tag-input-component": "^1.0.7",
-    "styled-components": "^5.3.0",
-    "uuid": "^8.3.2"
+    "concurrently": "^6.2.0"
   }
 }

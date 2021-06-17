@@ -1,34 +1,28 @@
-import { useEffect, useState } from 'react';
-
-import { Route, Switch } from 'react-router-dom';
-import styled from 'styled-components/macro';
+import { useState } from 'react';
+import { Switch, Route } from 'react-router-dom';
 
 import LandingPage from './pages/LandingPage';
 import AddForm from './pages/AddForm';
 import Appointments from './pages/Appointments';
 import Info from './pages/Info';
 import Map from './pages/Map';
-import Footer from './components/Footer';
+import Navigation from './components/Navigation';
 
 function App() {
-  /* const [serverMessage, setServerMessage] = useState('');
+  const [allVaccinations, setAllVaccinations] = useState([]);
 
-  useEffect(() => {
-    fetch('http://localhost:4000/')
-      .then((res) => res.json())
-      .then((response) => setServerMessage(response));
-  });
-*/
+  const addVac = (vac) => setAllVaccinations([...allVaccinations, vac]);
 
   return (
     <main className="App">
+      <Navigation />
       <Switch>
         <Route exact path="/">
-          <LandingPage />
+          <LandingPage allVaccinations={allVaccinations} />
         </Route>
 
         <Route path="/AddForm">
-          <AddForm />
+          <AddForm onAddVac={addVac} />
         </Route>
 
         <Route path="/Appointments">
@@ -42,7 +36,6 @@ function App() {
         <Route path="/Map">
           <Map />
         </Route>
-        <Footer />
       </Switch>
     </main>
   );
