@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const vaccionationSchema = new mongoose.Schema({
+const vaccinationSchema = new mongoose.Schema({
   vaccination: String,
   producer: String,
   date: Date,
@@ -11,6 +11,6 @@ const vaccionationSchema = new mongoose.Schema({
   nextAppointment: String,
 });
 
-const vaccination = mongoose.model('Vaccionation', vaccionationSchema);
+const Vaccination = mongoose.model('Vaccination', vaccinationSchema);
 
 export default Vaccination;

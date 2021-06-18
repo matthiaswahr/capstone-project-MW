@@ -1,7 +1,9 @@
-import Vaccination from '../models/vaccination.model';
+import Vaccination from '../models/vaccination.model.js';
 
 function getVaccinations(req, res) {
-  Vaccination.find().then((vaccination) => res.json(vaccination));
+  Vaccination.find()
+    .then((vaccination) => res.json(vaccination))
+    .catch((error) => res.json(error.message));
 }
 
 function getVaccinationId(req, res) {

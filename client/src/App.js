@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import LandingPage from './pages/LandingPage';
@@ -11,16 +11,14 @@ import Navigation from './components/Navigation';
 function App() {
   const [allVaccinations, setAllVaccinations] = useState([]);
 
-  const addVac = (vac) => setAllVaccinations([...allVaccinations, vac]);
-
   useEffect(() => {
     fetch('/vaccination')
       .then((result) => result.json())
-      .then((vaccination) => setVaccinations(vaccination))
+      .then((vaccination) => setAllVaccinations(vaccination))
       .catch((error) => console.error(error.message));
+  }, []);
 
-
-  function addVaccination(vac) {
+  function addVaccination(vaccination) {
     fetch('/vaccination', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -37,7 +35,7 @@ function App() {
     })
       .then((result) => result.json())
       .then((vaccination) =>
-        setAllVaccination([...allVaccinations, vaccination])
+        setAllVaccinations([...allVaccinations, vaccination])
       )
       .catch((error) => console.error(error.message));
   }
@@ -61,8 +59,8 @@ function App() {
       }),
     })
       .then((result) => result.json())
-      .then((memberToUpdate) =>
-        setMembers([...upToDateMembers, memberToUpdate])
+      .then((updatedVaccination) =>
+        setAllVaccinations([...updatedVaccinations, updatedVaccination])
       );
   }
 
@@ -75,7 +73,7 @@ function App() {
         </Route>
 
         <Route path="/AddForm">
-          <AddForm onAddVac={addVac} />
+          <AddForm onAddVac={addVaccination} />
         </Route>
 
         <Route path="/Appointments">
