@@ -40,28 +40,29 @@ function App() {
       .catch((error) => console.error(error.message));
   }
 
-  function updateVaccination(update) {
+  function updateVaccination(vaccination) {
     const updatedVaccinations = allVaccinations.filter(
-      (vaccination) => vaccination._id !== update._id
+      (vaccination) => vaccination._id !== vaccination._id
     );
 
-    fetch(`/vaccination/${update._id}`, {
+    fetch(`/vaccination/${vaccination._id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        vaccination: update.vaccination,
-        producer: update.producer,
-        date: update.date,
-        firstVaccination: update.firstVaccination,
-        secondVaccination: update.secondVaccination,
-        booster: update.booster,
-        nextAppointment: update.Appointment,
+        vaccination: vaccination.vaccination,
+        producer: vaccination.producer,
+        date: vaccination.date,
+        firstVaccination: vaccination.firstVaccination,
+        secondVaccination: vaccination.secondVaccination,
+        booster: vaccination.booster,
+        nextAppointment: vaccination.Appointment,
       }),
     })
       .then((result) => result.json())
       .then((updatedVaccination) =>
         setAllVaccinations([...updatedVaccinations, updatedVaccination])
-      );
+      )
+      .catch((error) => console.error(error.message));
   }
 
   return (
@@ -73,7 +74,7 @@ function App() {
         </Route>
 
         <Route path="/AddForm">
-          <AddForm onAddVac={addVaccination} />
+          <AddForm onAddVac={addVaccination} onUpdateVac={updateVaccination} />
         </Route>
 
         <Route path="/Appointments">

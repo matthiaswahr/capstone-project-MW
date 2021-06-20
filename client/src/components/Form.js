@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import styled from 'styled-components/macro';
 
-export default function Vaccination({ onAddVac }) {
+export default function Vaccination({ onAddVac, onUpdateVac }) {
   const initialState = {
     vaccination: '',
     producer: '',
@@ -31,6 +31,7 @@ export default function Vaccination({ onAddVac }) {
   function handleFormSubmit(event) {
     event.preventDefault();
     onAddVac(vaccination);
+    onUpdateVac(vaccination);
     setVaccination(initialState);
   }
 

@@ -7,6 +7,9 @@ export default function Navigation() {
         Home
       </NavLink>
       <NavLink to="/AddForm">Add Form</NavLink>
+      <NavLink to="/Appointments">Appointments</NavLink>
+      <NavLink to="/Info">Info zu COVID 19</NavLink>
+      <NavLink to="/Map">Map</NavLink>
     </NavigationBar>
   );
 }

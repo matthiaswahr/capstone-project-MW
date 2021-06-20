@@ -4,7 +4,7 @@ const vaccinationSchema = new mongoose.Schema({
   vaccination: String,
   producer: String,
   date: Date,
-  firstVaccionation: Boolean,
+  firstVaccination: Boolean,
   secondVaccination: Boolean,
   booster: Boolean,
   sideEffects: Array,
