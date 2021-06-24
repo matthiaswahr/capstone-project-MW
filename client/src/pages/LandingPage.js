@@ -7,19 +7,30 @@ export default function LandingPage({ allVaccinations }) {
       <Title>
         <h1>Get Start Vaccinated</h1>
       </Title>
-      {allVaccinations &&
-        allVaccinations.map((vac, index) => (
-          <VaccinationCard key={index} vaccination={vac} />
-        ))}
+      <Wrapper>
+        {allVaccinations &&
+          allVaccinations.map((vac, index) => (
+            <VaccinationCard key={index} vaccination={vac} />
+          ))}
+      </Wrapper>
     </>
   );
 }
 
 const Title = styled.div`
-  display: flex;
-  flex-direction: column;
   h1 {
     text-align: center;
     color: red;
   }
+`;
+
+const Wrapper = styled.section`
+  background-color: #85ffbd;
+  background-image: linear-gradient(
+    45deg,
+    #85ffbd 0%,
+    #fffb7d 50%,
+    #ffffff 100%
+  );
+  height: 90vw;
 `;

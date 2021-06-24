@@ -67,7 +67,6 @@ function App() {
 
   return (
     <main className="App">
-      <Navigation />
       <Switch>
         <Route exact path="/">
           <LandingPage allVaccinations={allVaccinations} />
@@ -89,6 +88,7 @@ function App() {
           <Map />
         </Route>
       </Switch>
+      <Navigation />
     </main>
   );
 }

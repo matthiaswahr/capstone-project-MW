@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 export default function VaccinationCard({ vaccination }) {
   return (
@@ -10,4 +10,11 @@ export default function VaccinationCard({ vaccination }) {
   );
 }
 
-const Card = styled.div``;
+const Card = styled.section`
+  background-color: var(--grey);
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  margin: 0.7rem 0;
+  padding: 1rem;
+`;

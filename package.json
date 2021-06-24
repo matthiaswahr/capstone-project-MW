@@ -4,12 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "cd ./client && npm run build",
-    "cy:open": "cd ./client && npm run cy:open",
+    "build": "cd l/client && npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "client": "cd ./client && npm start",
+    "cy:open": "cd ./client&& npm run cy:open",
     "server": "cd ./server && npm start",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./server/server.js",
     "postinstall": "cd ./client && npm install && cd ../server && npm install"
   },
@@ -24,6 +24,13 @@
   },
   "homepage": "https://github.com/matthiaswahr/capstone-project-MW#readme",
   "devDependencies": {
-    "concurrently": "^6.2.0"
+    "concurrently": "^6.2.0",
+    "cypress": "^7.5.0"
+  },
+  "dependencies": {
+    "prop-types": "^15.7.2",
+    "react-tag-input-component": "^1.0.7",
+    "styled-components": "^5.3.0",
+    "uuid": "^8.3.2"
   }
 }

@@ -78,7 +78,7 @@ export default function Vaccination({ onAddVac, onUpdateVac }) {
           type="checkbox"
           name="secondVaccination"
           onChange={updateVaccination}
-          value={vaccination.secondVaccinatin}
+          value={vaccination.secondVaccination}
         />
         <label>Booster</label>
         <input
