@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import styled from 'styled-components/macro';
+import SideEffects from './SideEffects';
 
 export default function Vaccination({ onAddVac, onUpdateVac }) {
   const initialState = {
@@ -26,6 +27,18 @@ export default function Vaccination({ onAddVac, onUpdateVac }) {
       inputValue = event.target.checked;
     }
     setVaccination({ ...vaccination, [inputName]: inputValue });
+  }
+
+  function updateSideEffects(sideEffectsToAdd) {
+    const sideEffects = [...vaccination.sideEffects, sideEffectsToAdd];
+    setVaccination({ ...vaccination, sideEffects: sideEffects });
+  }
+
+  function deleteSideEffects(sideEffectsToDelete) {
+    const sideEffects = vaccination.sideEffects.filter(
+      (sideEffects) => sideEffects !== sideEffectsToDelete
+    );
+    setSideEffects({ ...vaccination, sideEffects: sideEffects });
   }
 
   function handleFormSubmit(event) {
@@ -89,6 +102,12 @@ export default function Vaccination({ onAddVac, onUpdateVac }) {
         />
       </Checkbox>
       <label>Nebenwirkungen</label>
+      <SideEffects
+        headline="Nebenwirkungen"
+        sideEffects={vaccination.sideEffects}
+        onUpdateSideEffects={updateSideEffects}
+        onDeleteSideEffects={deleteSideEffects}
+      />
 
       <Button>
         <input type="submit" value=" Impfung hinzufügen" />

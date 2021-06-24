@@ -5,7 +5,7 @@ export default function LandingPage({ allVaccinations }) {
   return (
     <>
       <Title>
-        <h1>Get Start Vaccinated</h1>
+        <h1>Get Vaccinated</h1>
       </Title>
       <Wrapper>
         {allVaccinations &&
