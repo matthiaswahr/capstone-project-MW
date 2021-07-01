@@ -17,8 +17,6 @@ export default function Vaccination({ onAddVac, onUpdateVac }) {
 
   const [vaccination, setVaccination] = useState(initialState);
 
-  const date = new Date();
-
   function updateVaccination(event) {
     const inputName = event.target.name;
     let inputValue = event.target.value;
@@ -38,7 +36,7 @@ export default function Vaccination({ onAddVac, onUpdateVac }) {
     const sideEffects = vaccination.sideEffects.filter(
       (sideEffects) => sideEffects !== sideEffectsToDelete
     );
-    setSideEffects({ ...vaccination, sideEffects: sideEffects });
+    setVaccination({ ...vaccination, sideEffects: sideEffects });
   }
 
   function handleFormSubmit(event) {
@@ -63,6 +61,8 @@ export default function Vaccination({ onAddVac, onUpdateVac }) {
         <option value="tetanus">Tetanus</option>
         <option value="hepatitis_a">Hepatitis A</option>
         <option value="hepatitis_b">Hepatitis B</option>
+        <option value="influenza">Influenza</option>
+        <option value="fsme">FSME</option>
       </select>
       <label htmlFor="Bezeichnung_Hersteller">Hersteller bzw. Impfstoff</label>
       <input
@@ -101,9 +101,7 @@ export default function Vaccination({ onAddVac, onUpdateVac }) {
           value={vaccination.booster}
         />
       </Checkbox>
-      <label>Nebenwirkungen</label>
       <SideEffects
-        headline="Nebenwirkungen"
         sideEffects={vaccination.sideEffects}
         onUpdateSideEffects={updateSideEffects}
         onDeleteSideEffects={deleteSideEffects}
@@ -120,7 +118,8 @@ const Form = styled.form`
   display: grid;
   gap: 0.5rem;
 
-  margin: 0 auto;
+  margin: 0.5rem;
+  margin-top: 0;
   max-width: 25rem;
 
   label,
@@ -134,15 +133,12 @@ const Form = styled.form`
     margin-bottom: 0.5rem;
     padding: 0;
   }
-  input,
-  select {
-    padding: 0.5rem;
-    margin-bottom: 0.3rem;
+  
   }
   fieldset {
     border: none;
     display: flex;
-    gap: 0.4rem;
+
     padding: 0;
     margin: 0;
   }
@@ -157,7 +153,6 @@ const Form = styled.form`
 `;
 
 const Button = styled.button`
-  padding: 1.5rem;
   border-radius: 0.4rem;
   border: none;
   cursor: pointer;
@@ -166,6 +161,6 @@ const Button = styled.button`
 const Checkbox = styled.div`
   display: flex;
   justify-content: space-around;
-  padding: 2rem;
-  margin: 2rem;
+  padding: 0.5rem;
+  margin: 0.5rem;
 `;

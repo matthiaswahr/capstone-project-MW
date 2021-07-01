@@ -4,15 +4,14 @@ import VaccinationCard from '../components/Card';
 export default function LandingPage({ allVaccinations }) {
   return (
     <>
-      <Title>
-        <h1>Get Vaccinated</h1>
-      </Title>
-      <Wrapper>
-        {allVaccinations &&
-          allVaccinations.map((vac, index) => (
-            <VaccinationCard key={index} vaccination={vac} />
-          ))}
-      </Wrapper>
+      <Container>
+        <Wrapper>
+          {allVaccinations &&
+            allVaccinations.map((vac, index) => (
+              <VaccinationCard key={index} vaccination={vac} />
+            ))}
+        </Wrapper>
+      </Container>
     </>
   );
 }
@@ -25,6 +24,14 @@ const Title = styled.div`
 `;
 
 const Wrapper = styled.section`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 0.5rem;
+  width: 100vw;
+`;
+const Container = styled.section`
+  height: auto;
   background-color: #85ffbd;
   background-image: linear-gradient(
     45deg,
@@ -32,5 +39,4 @@ const Wrapper = styled.section`
     #fffb7d 50%,
     #ffffff 100%
   );
-  height: 90vw;
 `;

@@ -32,7 +32,9 @@ export default function SideEffects({
         {sideEffects?.map((sideEffect, index) => (
           <Tag key={index + sideEffect}>
             {sideEffect}
-            <span onClick={() => onDeleteSideEffect(sideEffects)}>&times;</span>
+            <span onClick={() => onDeleteSideEffects(sideEffects)}>
+              &times;
+            </span>
           </Tag>
         ))}
         <Input

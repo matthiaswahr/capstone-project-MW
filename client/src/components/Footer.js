@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <NavWrapper>
       <NavLink exact to="/LandingPage">
-        <NavIcon>Home</NavIcon>
+        <img 
       </NavLink>
 
       <NavLink to="/AddForm">

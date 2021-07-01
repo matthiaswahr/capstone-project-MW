@@ -16,5 +16,5 @@ const Wrapper = styled.section`
     #fffb7d 50%,
     #ffffff 100%
   );
-  height: 90vw;
+  height: 600px;
 `;

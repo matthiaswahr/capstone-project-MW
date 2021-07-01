@@ -7,6 +7,7 @@ import Appointments from './pages/Appointments';
 import Info from './pages/Info';
 import Map from './pages/Map';
 import Navigation from './components/Navigation';
+import Header from './components/Header';
 
 function App() {
   const [allVaccinations, setAllVaccinations] = useState([]);
@@ -67,6 +68,7 @@ function App() {
 
   return (
     <main className="App">
+      <Header />
       <Switch>
         <Route exact path="/">
           <LandingPage allVaccinations={allVaccinations} />
