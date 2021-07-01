@@ -1,22 +1,50 @@
 import styled from 'styled-components';
 import VaccinationCard from '../components/Card';
+import VaccinationForm from '../components/Form';
 
-export default function LandingPage({ allVaccinations }) {
+export default function LandingPage({
+  allVaccinations,
+  onAddToAppointment,
+  onDeleteVaccination,
+  onAddVaccination,
+  openEditModal,
+  isShowingEditModal,
+}) {
+  const [vaccinationToEdit, setVaccinationToEdit] = useState({});
+
+  function openModal(vaccination) {
+    setVaccinationToEdit(vaccination);
+    openEditModal(true);
+  }
+
   return (
     <>
       <Container>
-        <Wrapper>
-          {allVaccinations &&
-            allVaccinations.map((vac, index) => (
-              <VaccinationCard key={index} vaccination={vac} />
-            ))}
-        </Wrapper>
+        {allVaccinations &&
+          allVaccinations.map((vac, index) => (
+            <VaccinationCard
+              key={index}
+              vaccination={vac}
+              onAddToAppointment={onAddToAppointment}
+              onDeleteVaccination={onDeleteVaccination}
+              onOpenEditModal={openModal}
+            />
+          ))}
+        {isShowingEditModal && (
+          <Wrapper>
+            <VaccinationForm
+              headlineText={'Bearbeiten'}
+              vaccinationToEdit={vaccinationToEdit}
+              onAddVaccination={onAddVaccination}
+            />
+          </Wrapper>
+        )}
       </Container>
     </>
   );
 }
 
-const Title = styled.div`
+const Container = styled.div`
   h1 {
     text-align: center;
     color: red;
@@ -29,15 +57,4 @@ const Wrapper = styled.section`
   flex-wrap: wrap;
   padding: 0.5rem;
   width: 100vw;
-`;
-const Container = styled.section`
-  position: relative;
-  height: 100%;
-  background-color: #85ffbd;
-  background-image: linear-gradient(
-    45deg,
-    #85ffbd 0%,
-    #fffb7d 50%,
-    #ffffff 100%
-  );
 `;

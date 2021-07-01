@@ -3,7 +3,7 @@ import { useState } from 'react';
 import styled from 'styled-components/macro';
 import SideEffects from './SideEffects';
 
-export default function Vaccination({ onAddVac, onUpdateVac }) {
+export default function VaccinationForm({ onAddVac, onUpdateVac }) {
   const initialState = {
     vaccination: '',
     producer: '',

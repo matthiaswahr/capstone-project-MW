@@ -59,13 +59,13 @@ export default function VaccinationCard({
         <img
           src={deleteIcon}
           alt="Impfung löschen"
-          onClick={() => handleClick(vaccination)}
+          onClick={() => onRemove(vaccination)}
         />
 
         <img
           src={openIcon}
           alt="Impfung vormerken"
-          onClick={() => handleClick(vaccination)}
+          onClick={() => onOpen(vaccination)}
         />
       </Buttons>
     </Card>

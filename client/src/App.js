@@ -9,8 +9,15 @@ import Map from './pages/Map';
 import Navigation from './components/Navigation';
 import Header from './components/Header';
 
+import { updateLocalStorage, loadFromLocalStorage } from './lib/localstorage';
+
 function App() {
   const [allVaccinations, setAllVaccinations] = useState([]);
+
+  const [vaccToBeEdited, setVaccToBeEdited] = useState('');
+
+  const [isShown, setIsShown] = useState(false);
+  const [idToDelete, setIdToDelete] = useState('');
 
   useEffect(() => {
     fetch('/vaccination')
@@ -66,6 +73,22 @@ function App() {
       .catch((error) => console.error(error.message));
   }
 
+  function deleteVaccination(vaccToBeRemoved) {
+    const remainingVaccinations = vaccination.filter(
+      (vaccination) => vaccination._id !== idToDelete
+    );
+
+    setVaccinations(remainingVaccinations);
+    setIsShown(false);
+
+    fetch(`/vaccination/${idToDelete}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }).catch((error) => console.error(error.message));
+  }
+
   return (
     <main className="App">
       <Header />
@@ -75,7 +98,11 @@ function App() {
         </Route>
 
         <Route path="/AddForm">
-          <AddForm onAddVac={addVaccination} onUpdateVac={updateVaccination} />
+          <AddForm
+            onAddVac={addVaccination}
+            onUpdateVac={updateVaccination}
+            onDelete={remainingVaccinations}
+          />
         </Route>
 
         <Route path="/Appointments">
