@@ -1,6 +1,15 @@
 import styled from 'styled-components/macro';
 
-export default function VaccinationCard({ vaccination }) {
+import deleteIcon from '../assets/delete.svg';
+import editIcon from '../assets/edit.svg';
+import openIcon from '../assets/appointment.svg';
+
+export default function VaccinationCard({
+  vaccination,
+  onSetEdited,
+  onRemove,
+  onOpen,
+}) {
   const renameObject = {
     covid19: 'Covid 19',
     tetanus: 'Tetanus',
@@ -17,25 +26,48 @@ export default function VaccinationCard({ vaccination }) {
     );
   }
 
+  function handleClick(clickedVacc) {
+    onSetEdited(clickedVacc);
+  }
+
   return (
     <Card>
       <p>Imfpung gegen</p>
-      <Headline>{renameObject[vaccination.vaccination]}</Headline>
+      <Component>{renameObject[vaccination.vaccination]}</Component>
       <p>Impstoff bzw. Hersteller</p>
-      <Headline>{vaccination.producer}</Headline>
+      <Component>{vaccination.producer}</Component>
       <p>Datum der Impfung</p>
-      <Headline>{formatDate(vaccination.date)}</Headline>
-      <Headline>{vaccination.firstVaccination ? 'f' : ''}</Headline>
-      <Headline>{vaccination.secondVaccination}</Headline>
-      <Headline>{vaccination.booster}</Headline>
+      <Component>{formatDate(vaccination.date)}</Component>
+      <Component>{vaccination.firstVaccination ? 'Erstimpfung' : ''}</Component>
+      <Component>
+        {vaccination.secondVaccination ? 'Zweitimpfung' : ''}
+      </Component>
+      <Component>{vaccination.booster ? 'Booster' : ''}</Component>
       <p>Nebenwirkungen</p>
-      <Headline>
+      <Component>
         {vaccination.sideEffects?.map((s) => (
           <span>{s}</span>
         ))}
-      </Headline>
-      <p>Nächster Termin</p>
-      <Headline>{vaccination.nextAppointment}</Headline>
+      </Component>
+      <Buttons>
+        <img
+          src={editIcon}
+          alt="Impfung bearbeiten"
+          onClick={() => handleClick(vaccination)}
+        />
+
+        <img
+          src={deleteIcon}
+          alt="Impfung löschen"
+          onClick={() => handleClick(vaccination)}
+        />
+
+        <img
+          src={openIcon}
+          alt="Impfung vormerken"
+          onClick={() => handleClick(vaccination)}
+        />
+      </Buttons>
     </Card>
   );
 }
@@ -49,10 +81,21 @@ const Card = styled.section`
   margin: 0.5rem;
   margin-bottom: 0;
   padding: 0.5rem;
-  width: auto;
+  width: 100vw;
+  max-width: 30rem;
 `;
 
-const Headline = styled.h3`
+const Component = styled.h3`
   color: red;
   padding-bottom: 1rem;
+`;
+
+const Buttons = styled.div`
+  display: flex;
+  justify-content: space-around;
+
+  img {
+    cursor: pointer;
+    width: 2rem;
+  }
 `;

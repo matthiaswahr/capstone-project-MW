@@ -23,5 +23,5 @@ const Container = styled.section`
     #fffb7d 50%,
     #ffffff 100%
   );
-  height: 600px;
+  height: 100%;
 `;

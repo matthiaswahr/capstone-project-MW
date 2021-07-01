@@ -38,7 +38,7 @@ const NavigationBar = styled.footer`
   padding: 0.4rem;
   width: 100vw;
   border-radius: 7px 7px 7px 7px;
-  position: absolute;
+  position: fixed;
   bottom: 0;
 
   img {

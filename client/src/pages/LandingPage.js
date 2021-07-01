@@ -31,7 +31,8 @@ const Wrapper = styled.section`
   width: 100vw;
 `;
 const Container = styled.section`
-  height: auto;
+  position: relative;
+  height: 100%;
   background-color: #85ffbd;
   background-image: linear-gradient(
     45deg,
