@@ -4,8 +4,6 @@ import styled from 'styled-components';
 import home from '../assets/home.svg';
 import addForm from '../assets/icons8-spritze.svg';
 import appointment from '../assets/kalender.svg';
-import map from '../assets/maps.svg';
-import info from '../assets/info.svg';
 
 export default function Navigation({ isStatic }) {
   return (
