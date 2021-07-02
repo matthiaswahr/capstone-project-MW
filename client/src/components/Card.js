@@ -7,8 +7,10 @@ import openIcon from '../assets/appointment.svg';
 export default function VaccinationCard({
   vaccination,
   onAddToAppointment,
+  onRemoveAppointment,
   onDeleteVaccination,
   onOpenEditModal,
+  isAppointment,
 }) {
   const renameObject = {
     covid19: 'Covid 19',
@@ -26,10 +28,6 @@ export default function VaccinationCard({
     );
   }
 
-  function handleClick(clickedVacc) {
-    onSetEdited(clickedVacc);
-  }
-
   return (
     <Card>
       <p>Imfpung gegen</p>
@@ -45,8 +43,8 @@ export default function VaccinationCard({
       <Component>{vaccination.booster ? 'Booster' : ''}</Component>
       <p>Nebenwirkungen</p>
       <Component>
-        {vaccination.sideEffects?.map((s) => (
-          <span>{s}</span>
+        {vaccination.sideEffects?.map((sideEffect) => (
+          <span>{sideEffect}</span>
         ))}
       </Component>
       <Buttons>
@@ -62,11 +60,19 @@ export default function VaccinationCard({
           onClick={() => onDeleteVaccination(vaccination)}
         />
 
-        <img
-          src={openIcon}
-          alt="Impfung vormerken"
-          onClick={() => onAddToAppointment(vaccination)}
-        />
+        {isAppointment ? (
+          <img
+            src={openIcon}
+            alt="Impfung entfernen"
+            onClick={() => onRemoveAppointment(vaccination)}
+          />
+        ) : (
+          <img
+            src={openIcon}
+            alt="Impfung vormerken"
+            onClick={() => onAddToAppointment(vaccination)}
+          />
+        )}
       </Buttons>
     </Card>
   );

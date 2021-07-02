@@ -12,8 +12,8 @@ export default function Vaccination({
     vaccination: '',
     producer: '',
     date: '',
-    firstVaccination: true,
-    secondVaccination: true,
+    firstVaccination: false,
+    secondVaccination: false,
     booster: false,
     sideEffects: [],
     nextAppointment: '',
@@ -113,9 +113,7 @@ export default function Vaccination({
         onDeleteSideEffects={deleteSideEffects}
       />
 
-      <Button is Primary>
-        Impfung hinzufügen
-      </Button>
+      <Button isPrimary>Impfung hinzufügen</Button>
       <Button type="reset" onClick={() => setVaccination(initialState)}>
         Zurücksetzen
       </Button>

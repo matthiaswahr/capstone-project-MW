@@ -1,27 +1,24 @@
 import styled from 'styled-components/macro';
-import Vaccination from '../components/Form';
-import VaccinationCard from '../coponents/Card';
-
-export default function Appointments(
-  openAppointment,
-  onAddToAppointment,
-  isAppointment
-) {
+import VaccinationCard from '../components/Card';
+export default function Appointments({
+  openAppointments,
+  onRemoveAppointment,
+}) {
   return (
     <>
       <Wrapper>
         <h1>Offene Termine</h1>
-        {openAppointment.map((vaccination) => {
-          return (
-            <VaccinationCard
-              key={Vaccination._id}
-              vaccination={vaccination}
-              onAddToAppointment={onAddToAppointment}
-              isAppointment={isAppointment}
-            />
-          );
-        })}
-        );
+        {openAppointments.length > 0 &&
+          openAppointments.map((vaccination) => {
+            return (
+              <VaccinationCard
+                key={vaccination._id}
+                vaccination={vaccination}
+                onRemoveAppointment={onRemoveAppointment}
+                isAppointment
+              />
+            );
+          })}
       </Wrapper>
     </>
   );
