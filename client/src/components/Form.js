@@ -3,7 +3,11 @@ import { useState } from 'react';
 import styled from 'styled-components/macro';
 import SideEffects from './SideEffects';
 
-export default function VaccinationForm({ onAddVac, onUpdateVac }) {
+export default function VaccinationForm({
+  onAddVac,
+  onUpdateVac,
+  vaccinationToEdit,
+}) {
   const initialState = {
     vaccination: '',
     producer: '',
@@ -107,8 +111,11 @@ export default function VaccinationForm({ onAddVac, onUpdateVac }) {
         onDeleteSideEffects={deleteSideEffects}
       />
 
-      <Button>
-        <input type="submit" value=" Impfung hinzufügen" />
+      <Button is Primary>
+        Impfung hinzufügen
+      </Button>
+      <Button type="reset" onClick={() => setVaccination(initialState)}>
+        Zurücksetzen
       </Button>
     </Form>
   );

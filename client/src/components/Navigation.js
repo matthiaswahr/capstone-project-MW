@@ -21,12 +21,6 @@ export default function Navigation({ isStatic }) {
       <NavLink to="/Appointments">
         <img src={appointment} alt="appointment" />
       </NavLink>
-      <NavLink to="/Info">
-        <img src={info} alt="info" />
-      </NavLink>
-      <NavLink to="/Map">
-        <img src={map} alt="info" />
-      </NavLink>
     </NavigationBar>
   );
 }
