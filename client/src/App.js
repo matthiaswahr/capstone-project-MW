@@ -16,8 +16,11 @@ function App() {
 
   const [vaccToBeEdited, setVaccToBeEdited] = useState('');
 
-  const [isShown, setIsShown] = useState(false);
+  const [isShowingEditModal, setIsShowingEditModal] = useState(false);
+
   const [idToDelete, setIdToDelete] = useState('');
+
+  const [openAppointment, setOpenAppointment] = useState([]);
 
   useEffect(() => {
     fetch('/vaccination')
@@ -79,7 +82,7 @@ function App() {
     );
 
     setVaccinations(remainingVaccinations);
-    setIsShown(false);
+    setIsShowingEditModal(false);
 
     fetch(`/vaccination/${idToDelete}`, {
       method: 'DELETE',
@@ -94,7 +97,13 @@ function App() {
       <Header />
       <Switch>
         <Route exact path="/">
-          <LandingPage allVaccinations={allVaccinations} />
+          <LandingPage
+            allVaccinations={allVaccinations}
+            onAddToAppointment={onAddToAppointment}
+            onDeleteVaccination={onDeleteVaccination}
+            openEditModal={() => setIsShowingEditModal(true)}
+            isShowingEditModal={isShowingEditModal}
+          />
         </Route>
 
         <Route path="/AddForm">
@@ -106,7 +115,10 @@ function App() {
         </Route>
 
         <Route path="/Appointments">
-          <Appointments />
+          <Appointments
+            openAppointment={openAppointment}
+            onRemoveVaccination={removeVaccination}
+          />
         </Route>
 
         <Route path="/Info">

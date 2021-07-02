@@ -26,7 +26,8 @@ export default function VaccinationCard({
     );
   }
 
-  
+  function handleClick(clickedVacc) {
+    onSetEdited(clickedVacc);
   }
 
   return (
