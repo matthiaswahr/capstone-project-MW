@@ -120,14 +120,6 @@ function App() {
             onRemoveVaccination={removeVaccination}
           />
         </Route>
-
-        <Route path="/Info">
-          <Info />
-        </Route>
-
-        <Route path="/Map">
-          <Map />
-        </Route>
       </Switch>
       <Navigation />
     </main>

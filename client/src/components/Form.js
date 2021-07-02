@@ -3,7 +3,7 @@ import { useState } from 'react';
 import styled from 'styled-components/macro';
 import SideEffects from './SideEffects';
 
-export default function VaccinationForm({
+export default function Vaccination({
   onAddVac,
   onUpdateVac,
   vaccinationToEdit,
@@ -19,7 +19,9 @@ export default function VaccinationForm({
     nextAppointment: '',
   };
 
-  const [vaccination, setVaccination] = useState(initialState);
+  const [vaccination, setVaccination] = useState(
+    vaccinationToEdit ?? initialState
+  );
 
   function updateVaccination(event) {
     const inputName = event.target.name;
