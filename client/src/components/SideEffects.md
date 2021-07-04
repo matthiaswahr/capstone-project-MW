@@ -1,0 +1,3 @@
+```js
+<SideEffects sideEffects={[Müdigkeit]}>
+```

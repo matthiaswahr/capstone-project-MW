@@ -113,7 +113,9 @@ export default function Vaccination({
         onDeleteSideEffects={deleteSideEffects}
       />
 
-      <Button isPrimary>Impfung hinzufügen</Button>
+      <Button isPrimary type="submit">
+        Impfung hinzufügen
+      </Button>
       <Button type="reset" onClick={() => setVaccination(initialState)}>
         Zurücksetzen
       </Button>
@@ -128,41 +130,18 @@ const Form = styled.form`
   margin: 0.5rem;
   margin-top: 0;
   max-width: 25rem;
-
-  label,
-  legend {
-    font-weight: bold;
-    span {
-      font-weight: normal;
-    }
-  }
-  legend {
-    margin-bottom: 0.5rem;
-    padding: 0;
-  }
-  
-  }
-  fieldset {
-    border: none;
-    display: flex;
-
-    padding: 0;
-    margin: 0;
-  }
-  fieldset > label {
-    font-weight: normal;
-  }
-  input[type='radio'],
-  input[type='checkbox'] {
-    transform: scale(1.5);
-    margin-right: 0.5rem;
-  }
 `;
 
 const Button = styled.button`
-  border-radius: 0.4rem;
-  border: none;
   cursor: pointer;
+  font-size: 1.3em;
+  padding: 5px 12px;
+  font-family: Roboto, sans-serif;
+  font-weight: 300;
+  color: teal;
+  border: 1px solid silver;
+  background-image: linear-gradient(to top, gainsboro 0%, white 90%);
+  border-radius: 20px;
 `;
 
 const Checkbox = styled.div`
