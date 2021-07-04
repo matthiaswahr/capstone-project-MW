@@ -12,7 +12,7 @@ import { updateLocalStorage, loadFromLocalStorage } from './lib/localstorage';
 function App() {
   const [allVaccinations, setAllVaccinations] = useState([]);
 
-  //const [vaccToBeEdited, setVaccToBeEdited] = useState('');
+  const [vaccToBeEdited, setVaccToBeEdited] = useState('');
 
   const [isShowingEditModal, setIsShowingEditModal] = useState(false);
 
