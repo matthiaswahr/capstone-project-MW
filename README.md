@@ -14,7 +14,6 @@ Tech Stack
     PropTypes
     Styled Components
     react-spring
-    Storybook
     React Testing Library
     Jest
     Cypress Tests
