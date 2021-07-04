@@ -5,11 +5,11 @@
   "main": "index.js",
   "scripts": {
     "build": "cd ./client && npm run build",
-    "cy:open": "cd ./client && npm run cy:open",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "client": "cd ./client && npm start",
+    "cy:open": "cd ./client&& npm run cy:open",
     "server": "cd ./server && npm start",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./server/server.js",
     "postinstall": "cd ./client && npm install && cd ../server && npm install"
   },

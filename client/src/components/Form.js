@@ -1,22 +1,27 @@
 import { useState } from 'react';
 
 import styled from 'styled-components/macro';
+import SideEffects from './SideEffects';
 
-export default function Vaccination({ onAddVac, onUpdateVac }) {
+export default function Vaccination({
+  onAddVac,
+  onUpdateVac,
+  vaccinationToEdit,
+}) {
   const initialState = {
     vaccination: '',
     producer: '',
     date: '',
-    firstVaccination: true,
-    secondVaccination: true,
+    firstVaccination: false,
+    secondVaccination: false,
     booster: false,
     sideEffects: [],
     nextAppointment: '',
   };
 
-  const [vaccination, setVaccination] = useState(initialState);
-
-  const date = new Date();
+  const [vaccination, setVaccination] = useState(
+    vaccinationToEdit ?? initialState
+  );
 
   function updateVaccination(event) {
     const inputName = event.target.name;
@@ -26,6 +31,18 @@ export default function Vaccination({ onAddVac, onUpdateVac }) {
       inputValue = event.target.checked;
     }
     setVaccination({ ...vaccination, [inputName]: inputValue });
+  }
+
+  function updateSideEffects(sideEffectsToAdd) {
+    const sideEffects = [...vaccination.sideEffects, sideEffectsToAdd];
+    setVaccination({ ...vaccination, sideEffects: sideEffects });
+  }
+
+  function deleteSideEffects(sideEffectsToDelete) {
+    const sideEffects = vaccination.sideEffects.filter(
+      (sideEffects) => sideEffects !== sideEffectsToDelete
+    );
+    setVaccination({ ...vaccination, sideEffects: sideEffects });
   }
 
   function handleFormSubmit(event) {
@@ -50,6 +67,8 @@ export default function Vaccination({ onAddVac, onUpdateVac }) {
         <option value="tetanus">Tetanus</option>
         <option value="hepatitis_a">Hepatitis A</option>
         <option value="hepatitis_b">Hepatitis B</option>
+        <option value="influenza">Influenza</option>
+        <option value="fsme">FSME</option>
       </select>
       <label htmlFor="Bezeichnung_Hersteller">Hersteller bzw. Impfstoff</label>
       <input
@@ -78,7 +97,7 @@ export default function Vaccination({ onAddVac, onUpdateVac }) {
           type="checkbox"
           name="secondVaccination"
           onChange={updateVaccination}
-          value={vaccination.secondVaccinatin}
+          value={vaccination.secondVaccination}
         />
         <label>Booster</label>
         <input
@@ -88,10 +107,17 @@ export default function Vaccination({ onAddVac, onUpdateVac }) {
           value={vaccination.booster}
         />
       </Checkbox>
-      <label>Nebenwirkungen</label>
+      <SideEffects
+        sideEffects={vaccination.sideEffects}
+        onUpdateSideEffects={updateSideEffects}
+        onDeleteSideEffects={deleteSideEffects}
+      />
 
-      <Button>
-        <input type="submit" value=" Impfung hinzufügen" />
+      <Button isPrimary type="submit">
+        Impfung hinzufügen
+      </Button>
+      <Button type="reset" onClick={() => setVaccination(initialState)}>
+        Zurücksetzen
       </Button>
     </Form>
   );
@@ -101,52 +127,26 @@ const Form = styled.form`
   display: grid;
   gap: 0.5rem;
 
-  margin: 0 auto;
+  margin: 0.5rem;
+  margin-top: 0;
   max-width: 25rem;
-
-  label,
-  legend {
-    font-weight: bold;
-    span {
-      font-weight: normal;
-    }
-  }
-  legend {
-    margin-bottom: 0.5rem;
-    padding: 0;
-  }
-  input,
-  select {
-    padding: 0.5rem;
-    margin-bottom: 0.3rem;
-  }
-  fieldset {
-    border: none;
-    display: flex;
-    gap: 0.4rem;
-    padding: 0;
-    margin: 0;
-  }
-  fieldset > label {
-    font-weight: normal;
-  }
-  input[type='radio'],
-  input[type='checkbox'] {
-    transform: scale(1.5);
-    margin-right: 0.5rem;
-  }
 `;
 
 const Button = styled.button`
-  padding: 1.5rem;
-  border-radius: 0.4rem;
-  border: none;
   cursor: pointer;
+  font-size: 1.3em;
+  padding: 5px 12px;
+  font-family: Roboto, sans-serif;
+  font-weight: 300;
+  color: teal;
+  border: 1px solid silver;
+  background-image: linear-gradient(to top, gainsboro 0%, white 90%);
+  border-radius: 20px;
 `;
 
 const Checkbox = styled.div`
   display: flex;
   justify-content: space-around;
-  padding: 2rem;
-  margin: 2rem;
+  padding: 0.5rem;
+  margin: 0.5rem;
 `;

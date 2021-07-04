@@ -4,12 +4,19 @@ import { Switch, Route } from 'react-router-dom';
 import LandingPage from './pages/LandingPage';
 import AddForm from './pages/AddForm';
 import Appointments from './pages/Appointments';
-import Info from './pages/Info';
-import Map from './pages/Map';
 import Navigation from './components/Navigation';
+import Header from './components/Header';
+
+import { updateLocalStorage, loadFromLocalStorage } from './lib/localstorage';
 
 function App() {
   const [allVaccinations, setAllVaccinations] = useState([]);
+
+  //const [vaccToBeEdited, setVaccToBeEdited] = useState('');
+
+  const [isShowingEditModal, setIsShowingEditModal] = useState(false);
+
+  const [openAppointments, setOpenAppointments] = useState([]);
 
   useEffect(() => {
     fetch('/vaccination')
@@ -65,12 +72,44 @@ function App() {
       .catch((error) => console.error(error.message));
   }
 
+  function deleteVaccination(vaccToBeRemoved) {
+    const remainingVaccinations = allVaccinations.filter(
+      (vaccination) => vaccination._id !== vaccToBeRemoved._id
+    );
+
+    setAllVaccinations(remainingVaccinations);
+    setIsShowingEditModal(false);
+
+    fetch(`/vaccination/${vaccToBeRemoved._id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((result) => result.json())
+      .then((data) => console.log(data))
+      .catch((error) => console.error(error.message));
+  }
+  function addToAppointments(vaccination) {
+    setOpenAppointments([...openAppointments, vaccination]);
+  }
+
+  function removeVaccination(vaccination) {
+    console.log('Remove vaccination with id: ' + vaccination._id);
+  }
+
   return (
     <main className="App">
-      <Navigation />
+      <Header />
       <Switch>
         <Route exact path="/">
-          <LandingPage allVaccinations={allVaccinations} />
+          <LandingPage
+            allVaccinations={allVaccinations}
+            onAddToAppointment={addToAppointments}
+            onDeleteVaccination={deleteVaccination}
+            openEditModal={() => setIsShowingEditModal(true)}
+            isShowingEditModal={isShowingEditModal}
+          />
         </Route>
 
         <Route path="/AddForm">
@@ -78,17 +117,13 @@ function App() {
         </Route>
 
         <Route path="/Appointments">
-          <Appointments />
-        </Route>
-
-        <Route path="/Info">
-          <Info />
-        </Route>
-
-        <Route path="/Map">
-          <Map />
+          <Appointments
+            openAppointments={openAppointments}
+            onRemoveAppointment={removeVaccination}
+          />
         </Route>
       </Switch>
+      <Navigation />
     </main>
   );
 }
